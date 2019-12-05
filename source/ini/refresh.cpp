@@ -51,6 +51,10 @@ size_t ini::refresh() {
     std::string line;
     std::getline(file, line);
 
+    // Ignore if comment
+    if (line[0] == ';')
+      continue;
+
     // Check if section
     if (line[0] == '[' && line.find(']') != std::string::npos) {
       // Append if not a duplicate
