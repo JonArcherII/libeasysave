@@ -33,12 +33,15 @@ namespace easysave {
 
 class ini {
 public:
-  // Class initializers
+  // Constructors
   ini(std::string filename) {
     update_filename(filename);
     refresh();
   }
-  ini() { ini("config.ini"); }
+  ini() {
+    update_filename("config.ini");
+    refresh();
+  }
 
   // Filename functions
   std::string filename() const { return m_filename; }
