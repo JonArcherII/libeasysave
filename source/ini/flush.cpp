@@ -46,7 +46,12 @@ size_t ini::flush() {
           section_is_empty = false;
           file << "[" << m_sections[i] << "]" << std::endl;
         }
-        file << m_keys[j].name << "=\"" << m_keys[j].data << "\"" << std::endl;
+        // We do a fetch here to avoid duping quotes. Inefficient, and should be
+        // redone! Maybe break off the stripping of quotes into a function that
+        // also takes a key index?
+        file << m_keys[j].name << "=\""
+             << fetch(m_sections[m_keys[j].index], m_keys[j].name) << "\""
+             << std::endl;
       }
   }
   file.close();

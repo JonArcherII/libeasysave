@@ -37,5 +37,9 @@ std::string ini::fetch(std::string section, std::string key_name) {
   if (key_index < 0)
     return "";
 
+  // Remove leading and trailing quotes
+  if (m_keys[key_index].data[0] == '\"' &&
+      m_keys[key_index].data[m_keys[key_index].data.size() - 1] == '\"')
+    return m_keys[key_index].data.substr(1, m_keys[key_index].data.size() - 2);
   return m_keys[key_index].data;
 }

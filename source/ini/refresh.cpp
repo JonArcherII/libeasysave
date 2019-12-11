@@ -25,6 +25,7 @@ SOFTWARE.
 */
 
 #include <fstream>
+#include <regex>
 
 #include "easysave/ini.hpp"
 
@@ -76,11 +77,12 @@ size_t ini::refresh() {
       m_keys.push_back(
           (m_ini_key_t){index, line.substr(0, line.find('=')),
                         line.substr(line.find('=') + 1, line.size())});
-      // Remove leading and trailing quotes
-      if (m_keys.back().data[0] == '\"' &&
-          m_keys.back().data[m_keys.back().data.size() - 1] == '\"')
-        m_keys.back().data =
-            m_keys.back().data.substr(1, m_keys.back().data.size() - 2);
+
+      // Remove leading and trailing whitespace
+      m_keys.back().name =
+          std::regex_replace(m_keys.back().name, std::regex("^ +| +$"), "");
+      m_keys.back().data =
+          std::regex_replace(m_keys.back().data, std::regex("^ +| +$"), "");
     }
   }
 
