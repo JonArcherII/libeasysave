@@ -52,6 +52,9 @@ size_t ini::refresh() {
     std::string line;
     std::getline(file, line);
 
+    // Ensure there is no carriage return
+    line = std::regex_replace(line, std::regex("\r+$"), "");
+
     // Ignore if comment
     if (line[0] == ';')
       continue;
