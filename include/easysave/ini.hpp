@@ -47,8 +47,12 @@ public:
   std::string filename() const { return m_filename; }
   void update_filename(std::string filename) { m_filename = filename; }
 
-  // Methods for fetching/setting keys
+  // Methods for fetching keys
   std::string fetch(std::string section, std::string key_name);
+  std::string fetch(std::string section, std::string key_name,
+                    std::string default_value);
+
+  // Method for setting keys
   void set(std::string section, std::string key_name, std::string key_data);
 
   // Functions for flushing to disk and refreshing from disk

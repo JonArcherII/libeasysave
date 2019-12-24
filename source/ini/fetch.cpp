@@ -29,13 +29,21 @@ SOFTWARE.
 using namespace easysave;
 
 std::string ini::fetch(std::string section, std::string key_name) {
+  return fetch(section, key_name, "");
+}
+
+std::string ini::fetch(std::string section, std::string key_name,
+                       std::string default_value) {
   int section_index = m_match_section_index(section);
   if (section_index < 0)
     return "";
 
   int key_index = m_match_key_index(section_index, key_name);
-  if (key_index < 0)
-    return "";
+  if (key_index < 0) {
+    // Key does not exist. Let's make it and return the default value
+    set(section, key_name, default_value);
+    return default_value;
+  }
 
   // Remove leading and trailing quotes
   if (m_keys[key_index].data[0] == '\"' &&
