@@ -31,6 +31,7 @@ SOFTWARE.
 
 using namespace easysave;
 
+/// Reloads INI file contents from disk. Returns non-zero on fail.
 size_t ini::refresh() {
   std::ifstream file;
 

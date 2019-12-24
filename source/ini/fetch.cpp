@@ -28,10 +28,12 @@ SOFTWARE.
 
 using namespace easysave;
 
+/// Returns the value of a given key in a given section. If the key does not exist, then a empty string will be returned.
 std::string ini::fetch(std::string section, std::string key_name) {
   return fetch(section, key_name, "");
 }
 
+/// Returns the value of a given key in a given section. If the key does not exist, then the specified default value will be returned.
 std::string ini::fetch(std::string section, std::string key_name,
                        std::string default_value) {
   int section_index = m_match_section_index(section);

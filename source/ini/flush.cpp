@@ -30,6 +30,7 @@ SOFTWARE.
 
 using namespace easysave;
 
+/// Writes INI data to the disk. Returns non-zero on fail.
 size_t ini::flush() {
   std::ofstream file;
   file.open(m_filename);
