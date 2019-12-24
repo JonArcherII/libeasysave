@@ -1,6 +1,11 @@
+# Object/binary files
 *.out
-
 *.o
 *.a
 
+# Config files
 *.ini
+
+# Doc files
+html/
+latex/

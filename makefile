@@ -9,12 +9,15 @@ OBJS += $(filter %.o, $(patsubst %.cpp, %.o, $(SRCS)))
 CXXFLAGS := -Wall -Wextra -std=c++17
 CXXFLAGS += $(foreach dir, $(INC_DIRS), -I$(dir))
 
-.PHONY: all clean
+.PHONY: all clean docs
 
 all: $(TARGET)
 
 clean:
 	-@rm -r $(TARGET) $(OBJS)
+
+docs:
+	@doxygen doxyfile
 
 $(TARGET): $(OBJS)
 	$(AR) -rcs $(TARGET) $(OBJS)
