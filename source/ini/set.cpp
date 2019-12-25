@@ -42,8 +42,6 @@ void ini::set(std::string section, std::string key_name, std::string key_data) {
   int key_index = m_match_key_index(section_index, key_name);
   if (key_index < 0) {
     // Key does not exist; we create it from scratch
-    std::cout << "Creating key in section " << m_sections[section_index]
-              << std::endl;
     m_keys.push_back((m_ini_key_t){section_index, key_name, key_data});
     return;
   }
